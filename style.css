@@ -1,108 +1,141 @@
-*{
-    margin: 0%;
-    font-family: Arial, Helvetica, sans-serif;
-    
+body {
+    margin: 0;
+    font-family: Helvetica, sans-serif;
+    background-color: #ffffff;
   }
-  .header_bar {
-    display: flex; 
-    width: 100%;
-    height: 80px;
-    background-color: blue;
-    position: fixed;
   
-  }
-  .header_logo {
-    display: block;
-    width: 50px;
-    height: 80px;
-    padding: 15px;
-    z-index: 11;
-  } 
-  
-  .header_nav{
-    
-    width: 300px;
-    height: 150vh;
-    background-color: blue;
-    color: black;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    position: fixed;
-    left: -300px;
-    transition: all ls;
-    text-decoration: none;
-    padding-top: 100px;
-    padding-left: 3px;
-    z-index: 9;
-  }
-  .header_nav.active{
-    left: 0px;
-  }
-  .header-center {
-    display: flex;
-    justify-content: center;
-    align-self: center;
-    flex-grow: 1;
-    color: aliceblue;
-    z-index: 10;
-  }
-  .header-right {
-    align-self: center;
-    justify-content: right;
-    
-  }
-  .header_logo1 {
-    display: inline-flex;
-    width: 50px;
-    height: 50px;
-    padding-left: 15px;
-    
-  } 
-    
-  .header_menu {
-    display: flex;
-    column-gap: 40px;
-    text-align: center;
-    
-  }
-
   a {
+    color: #000;
+  }
+  
+  /* header */
+  
+  .header {
+    background-color: #1455aa;
+    box-shadow: 1px 1px 4px 0 rgba(0,0,0,.1);
+    position: fixed;
+    width: 100%;
+    z-index: 3;
+  }
+  
+  .header ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    background-color: #1455aa;
+  }
+  
+  .header li a {
+    display: block;
+    padding: 20px 20px;
+    border-right: 1px solid #f4f4f4;
     text-decoration: none;
-    color: azure;
-    text-align: center;
   }
   
-  @media (max-width: 800px){
-      .header_logo {
-        display: block;
-      }
+  .header li a:hover,
+  .header .menu-btn:hover {
+    background-color: #1455aa;
+  }
   
-      .header_menu{
-        display: block;
-      }
+  .header .logo {
+    display: block;
+    float: left;
+    font-size: 2em;
+    padding: 10px 20px;
+    text-decoration: none;
   }
-  .canoe-image {
-    
-    background-image: url("https://raw.githubusercontent.com/Zulinov/skillsProjects/main/canoe.jpg");
-    padding: 200px;
-    width: 970px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: fixed;
-    z-index: -1;
-    
-
+  
+  /* menu */
+  
+  .header .menu {
+    clear: both;
+    max-height: 0;
+    transition: max-height .2s ease-out;
   }
-  .canoe-text {
-    text-align: center;
+  
+  /* menu icon */
+  
+  .header .menu-icon {
+    cursor: pointer;
+    display: inline-block;
+    float: right;
+    padding: 28px 20px;
+    position: relative;
+    user-select: none;
+  }
+  
+  .header .menu-icon .navicon {
+    background: #333;
+    display: block;
+    height: 2px;
+    position: relative;
+    transition: background .2s ease-out;
+    width: 18px;
+  }
+  
+  .header .menu-icon .navicon:before,
+  .header .menu-icon .navicon:after {
+    background: #333;
+    content: '';
+    display: block;
+    height: 100%;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 50px;
+    transition: all .2s ease-out;
+    width: 100%;
   }
-  div content{
-    position: fixed;
-    padding-left: 20px;
+  
+  .header .menu-icon .navicon:before {
+    top: 5px;
   }
+  
+  .header .menu-icon .navicon:after {
+    top: -5px;
+  }
+  
+  /* menu btn */
+  
+  .header .menu-btn {
+    display: none;
+  }
+  
+  .header .menu-btn:checked ~ .menu {
+    max-height: 240px;
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon .navicon {
+    background: transparent;
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon .navicon:before {
+    transform: rotate(-45deg);
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon .navicon:after {
+    transform: rotate(45deg);
+  }
+  
+  .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+  .header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+    top: 0;
+  }
+  
+  /* 48em = 768px */
+  
+  @media (min-width: 48em) {
+    .header li {
+      float: left;
+    }
+    .header li a {
+      padding: 20px 30px;
+    }
+    .header .menu {
+      clear: none;
+      float: right;
+      max-height: none;
+    }
+    .header .menu-icon {
+      display: none;
+    }
+  }
+  
